@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className='header'>
       <div className='headerTitles'>
-        <span className='headerTitleSm'>SEO & Web Dev (Reactjs) </span>
+        <span className='headerTitleSm'>254 SEO Geek </span>
         <span className='headerTitleLg'>Blog</span>
       </div>
       <img
