@@ -51,3 +51,8 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+/* .post hr {
+  height: 1px;
+  border-top: 1px solid tomato;
+  border: 0;
+} */

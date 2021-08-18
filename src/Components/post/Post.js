@@ -1,5 +1,5 @@
 import "./Post.css";
-import PostImg from "../images/254seogeekblog-header.jpg";
+import PostImg from "../../images/254seogeekblog-header.jpg";
 
 export default function Post() {
   return (
@@ -11,7 +11,7 @@ export default function Post() {
           <span className='postCat'>Life</span>
         </div>
         <span className='postTitle'>Lorem ipsum dolor sit amet </span>
-        <hr />
+        {/* <hr /> */}
         <span className='postDate'>1 hour ago</span>
       </div>
       <p className='postDescription'>
