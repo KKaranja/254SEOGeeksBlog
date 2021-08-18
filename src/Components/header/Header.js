@@ -1,6 +1,6 @@
 import "./Header.css";
 
-import HeaderImg from "../../images/254seogeekblog-header-main.jpg";
+import HeaderImg from "../../images/254seogeek-main-banner.jpg";
 export default function Header() {
   return (
     <div className='header'>

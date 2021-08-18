@@ -1,5 +1,5 @@
 .header {
-  margin-top: 60px;
+  margin-top: 35px;
 }
 .headerTitles {
   display: flex;
@@ -21,5 +21,5 @@
 }
 .HeaderImg {
   width: 100%;
-  height: 400px;
+  height: 440px;
 }
