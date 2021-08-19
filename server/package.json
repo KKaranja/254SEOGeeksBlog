@@ -1,8 +1,20 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.13.7",
-    "multer": "^1.4.3"
-  }
+    "multer": "^1.4.3",
+    "nodemon": "^2.0.12"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "description": "254seo geeks blog backend ",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Isaac kimura",
+  "license": "MIT"
 }
