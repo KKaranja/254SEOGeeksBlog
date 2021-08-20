@@ -12,14 +12,15 @@ const api = axios.create({
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-
   const { search } = useLocation();
+
+  // const { search } = useLocation();
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await api.get("/posts");
-      console.log(res);
-      // setPosts(res.data);
+      const res = await api.get("/posts" + search);
+      // console.log(res);
+      setPosts(res.data);
     };
     fetchPosts();
   }, [search]);

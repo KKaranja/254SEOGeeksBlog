@@ -2,7 +2,7 @@ import "./Post.css";
 import PostImg from "../../images/254seogeekblog-header.jpg";
 import { Link } from "react-router-dom";
 
-export default function Post(post) {
+export default function Post({ post }) {
   return (
     <div className='post'>
       {post.photo && <img className='postImg' src={post.photo} alt='' />}
@@ -17,7 +17,9 @@ export default function Post(post) {
         </Link>
 
         {/* <hr /> */}
-        <span className='postDate'>{new Date(post.createAt).toDateString}</span>
+        <span className='postDate'>
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
       <p className='postDescription'>{post.description}</p>
     </div>

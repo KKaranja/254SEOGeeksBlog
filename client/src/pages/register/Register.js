@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 export default function Register() {
-  const [usename, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -20,10 +20,12 @@ export default function Register() {
     setError(false);
     try {
       const res = await api.post("/auth/register", {
-        usename,
+        username,
         email,
         password,
       });
+      // console.log(res);
+      // res.data && window.location.replace("/login");
       res.data && window.location.replace("/login");
     } catch (err) {
       setError(true);
@@ -61,7 +63,7 @@ export default function Register() {
           Login
         </Link>
       </button>
-      {error && <span>Something went wrong...</span>}
+      {error && <span className='errorSpan'>Something went wrong...</span>}
     </div>
   );
 }

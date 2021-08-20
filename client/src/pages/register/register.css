@@ -50,3 +50,7 @@
   color: white;
   border-radius: 5px;
 }
+.errorSpan {
+  color: red;
+  margin-top: 10px;
+}

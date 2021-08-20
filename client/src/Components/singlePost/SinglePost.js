@@ -11,6 +11,7 @@ const api = axios.create({
 
 export default function SinglePost() {
   const location = useLocation();
+  // console.log(location);
   const path = location.pathname.split("/")[2];
 
   const [post, setPost] = useState({});
@@ -18,6 +19,7 @@ export default function SinglePost() {
   useEffect(() => {
     const getPost = async () => {
       const res = await api.get("posts/" + path);
+      // console.log(res);
       setPost(res.data);
     };
     getPost();
@@ -45,7 +47,7 @@ export default function SinglePost() {
             </Link>
           </span>
           <span className='singlePostDate'>
-            {new Date(post.createdAt).toDateString}
+            {new Date(post.createdAt).toDateString()}
           </span>
         </div>
         <p className='singlePostDescription'>{post.description}</p>
