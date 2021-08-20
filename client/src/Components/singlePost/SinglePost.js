@@ -1,12 +1,37 @@
+import { useEffect, useState } from "react";
+
 import "./singlePost.css";
 import singlePostImg from "../../images/254seogeekblog-header-image.jpg";
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: `http://localhost:5000/server/`,
+});
+
 export default function SinglePost() {
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await api.get("posts/" + path);
+      setPost(res.data);
+    };
+    getPost();
+  }, [path]);
+
   return (
     <div className='singlePost'>
       <div className='singPostWrapper'>
-        <img src={singlePostImg} alt='' className='singlePostImg' />
+        {post.photo && (
+          <img src={post.photo} alt='' className='singlePostImg' />
+        )}
+
         <h1 className='singlePostTitle'>
-          Lorem ipsum dolor sit amet consectetur
+          {post.title}
           <div className='singlePostEditContainer'>
             <i className='singlePostIcon far fa-thumbs-up'></i>
             <i className='singlePostIcon fas fa-comments'></i>
@@ -14,30 +39,16 @@ export default function SinglePost() {
         </h1>
         <div className='singlePostInfo'>
           <span className='singlePostAuthor'>
-            Author: <b>Kimura</b>
+            Author:
+            <Link className='link' to={`/?user=${post.username}`}>
+              <b>{post.username}</b>
+            </Link>
           </span>
-          <span className='singlePostDate'>1 hour ago.</span>
+          <span className='singlePostDate'>
+            {new Date(post.createdAt).toDateString}
+          </span>
         </div>
-        <p className='singlePostDescription'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-          laboriosam error possimus explicabo assumenda velit necessitatibus
-          obcaecati eos asperiores dolorem! Expedita, impedit sit incidunt cum
-          repudiandae modi rem nam voluptatum! Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Dolor laboriosam error possimus
-          explicabo assumenda velit necessitatibus obcaecati eos asperiores
-          dolorem! Expedita, impedit sit incidunt cum repudiandae modi rem nam
-          voluptatum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Dolor laboriosam error possimus explicabo assumenda velit
-          necessitatibus obcaecati eos asperiores dolorem! Expedita, impedit sit
-          incidunt cum repudiandae modi rem nam voluptatum! Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Dolor laboriosam error possimus
-          explicabo assumenda velit necessitatibus obcaecati eos asperiores
-          dolorem! Expedita, impedit sit incidunt cum repudiandae modi rem nam
-          voluptatum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Dolor laboriosam error possimus explicabo assumenda velit
-          necessitatibus obcaecati eos asperiores dolorem! Expedita, impedit sit
-          incidunt cum repudiandae modi rem nam voluptatum!
-        </p>
+        <p className='singlePostDescription'>{post.description}</p>
       </div>
     </div>
   );

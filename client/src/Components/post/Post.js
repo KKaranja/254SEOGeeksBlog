@@ -1,31 +1,25 @@
 import "./Post.css";
 import PostImg from "../../images/254seogeekblog-header.jpg";
+import { Link } from "react-router-dom";
 
-export default function Post() {
+export default function Post(post) {
   return (
     <div className='post'>
-      <img className='postImg' src={PostImg} alt='' />
+      {post.photo && <img className='postImg' src={post.photo} alt='' />}
       <div className='postInfo'>
         <div className='postCats'>
-          <span className='postCat'>Music</span>
-          <span className='postCat'>Life</span>
+          {post.categories.map((c) => (
+            <span className='postCat'>{c.name}</span>
+          ))}
         </div>
-        <span className='postTitle'>Lorem ipsum dolor sit amet </span>
+        <Link className='link' to={`post/${post._id}`}>
+          <span className='postTitle'>{post.title}</span>
+        </Link>
+
         {/* <hr /> */}
-        <span className='postDate'>1 hour ago</span>
+        <span className='postDate'>{new Date(post.createAt).toDateString}</span>
       </div>
-      <p className='postDescription'>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste,
-        temporibus id perferendis quidem doloribus illo voluptas ratione, nam
-        eaque natus accusamus omnis vero beatae esse et facere tempore explicabo
-        laborum! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste,
-        temporibus id perferendis quidem doloribus illo voluptas ratione, nam
-        eaque natus accusamus omnis vero beatae esse et facere tempore explicabo
-        laborum! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste,
-        temporibus id perferendis quidem doloribus illo voluptas ratione, nam
-        eaque natus accusamus omnis vero beatae esse et facere tempore explicabo
-        laborum!
-      </p>
+      <p className='postDescription'>{post.description}</p>
     </div>
   );
 }

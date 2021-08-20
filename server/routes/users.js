@@ -6,6 +6,7 @@ const Post = require("../models/Posts");
 // Update
 router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
+    // hashing the password
     if (req.body.password) {
       const salt = await bcrypt.genSalt(14);
       req.body.password = await bcrypt.hash(req.body.password, salt);
