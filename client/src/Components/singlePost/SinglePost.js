@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import "./singlePost.css";
-import singlePostImg from "../../images/254seogeekblog-header-image.jpg";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import { Context } from "../../context/Context";
 
 const api = axios.create({
   baseURL: `http://localhost:5000/server/`,
@@ -13,8 +13,9 @@ export default function SinglePost() {
   const location = useLocation();
   // console.log(location);
   const path = location.pathname.split("/")[2];
-
+  const { user } = useContext(Context);
   const [post, setPost] = useState({});
+  const publicFolder = "http://localhost:5000/images/";
 
   useEffect(() => {
     const getPost = async () => {
@@ -25,19 +26,40 @@ export default function SinglePost() {
     getPost();
   }, [path]);
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/posts/${post.id}`, {
+        data: { username: user.username },
+      });
+      window.location.replace("/");
+    } catch (error) {}
+  };
+
+  console.log(user);
+  console.log(user.username === post.username);
+
   return (
     <div className='singlePost'>
       <div className='singPostWrapper'>
         {post.photo && (
-          <img src={post.photo} alt='' className='singlePostImg' />
+          <img
+            src={publicFolder + post.photo}
+            alt=''
+            className='singlePostImg'
+          />
         )}
 
         <h1 className='singlePostTitle'>
           {post.title}
-          <div className='singlePostEditContainer'>
-            <i className='singlePostIcon far fa-thumbs-up'></i>
-            <i className='singlePostIcon fas fa-comments'></i>
-          </div>
+          {post.username === user?.username && (
+            <div className='singlePostEditContainer'>
+              <i className='singlePostIcon fas fa-edit'></i>
+              <i
+                className='singlePostIcon fas fa-trash-alt'
+                onClick={handleDelete}
+              ></i>
+            </div>
+          )}
         </h1>
         <div className='singlePostInfo'>
           <span className='singlePostAuthor'>

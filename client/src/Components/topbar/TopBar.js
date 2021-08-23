@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./TopBar.css";
+import { Context } from "../../context/Context";
 
 export default function TopBar() {
-  const user = true;
+  const { user, dispatch } = useContext(Context);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <div className='topBar'>
       <div className='topLetf'>
@@ -35,7 +41,9 @@ export default function TopBar() {
           <i className='topSocialIcons fab fa-github-square'></i>
           <p className='tool-tip__info'>
             <span className='info'>
-              <span className='info__title'>Github</span>
+              <Link className='link' to='https://github.com/KKaranja'>
+                <span className='info__title'>Github</span>
+              </Link>
             </span>
           </p>
         </div>
@@ -62,14 +70,16 @@ export default function TopBar() {
               New Blog
             </Link>
           </li>
-          <li className='topListItem'>{user && "Logout"}</li>
+          <li className='topListItem' onClick={handleLogout}>
+            {user && "Logout"}
+          </li>
         </ul>
       </div>
       <div className='topRight'>
         {user ? (
           <img
             className='TopProfileImg'
-            src='https://avatars.githubusercontent.com/u/37881972?v=4'
+            src={user.profilePic}
             alt='Isaac Karanja Kimura - SEO expert and Javascript developer'
           />
         ) : (
