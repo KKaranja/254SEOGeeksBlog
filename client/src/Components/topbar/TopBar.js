@@ -25,7 +25,7 @@ export default function TopBar() {
           <i className='topSocialIcons fab fa-twitter-square'></i>
           <p className='tool-tip__info'>
             <span className='info'>
-              <span className='info__title'>Twitter</span>
+              <span className='info__title'>Twitter </span>
             </span>
           </p>
         </div>

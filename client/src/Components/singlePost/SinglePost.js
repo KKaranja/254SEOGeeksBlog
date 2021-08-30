@@ -28,15 +28,15 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post.id}`, {
+      await axios.delete(`/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace("/");
     } catch (error) {}
   };
 
-  console.log(user);
-  console.log(user.username === post.username);
+  // console.log(user);
+  // console.log(user.username === post.username);
 
   return (
     <div className='singlePost'>
